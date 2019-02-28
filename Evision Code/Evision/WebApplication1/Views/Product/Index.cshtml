@@ -1,0 +1,89 @@
+﻿
+@using WebApplication1.CustomHtmlHelpers
+@model IEnumerable<WebApplication1.Models.Product>
+
+
+@{
+    ViewBag.Title = "Index";
+ 
+}
+<head >
+
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <title>evision</title>
+
+    <style>
+        td {
+           
+            border: 1px solid black
+        }
+        th {
+            
+            border: 1px solid black
+        }
+
+
+    </style>
+</head>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using(Html.BeginForm("index","Product",FormMethod.Get))
+{ 
+<p>
+    @Html.TextBox("Search") <input type="submit" value="search"/>
+</p>
+}
+
+<table class="table" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.Image(item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdated)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+             
+            </td>
+        </tr>
+    }
+
+</table>
+
+@{
+    
+    
+@Html.ActionLink("Export", "excel")
+}

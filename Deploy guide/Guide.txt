@@ -1,0 +1,3 @@
+-Click (Create new) button to add a new item
+-type the first letters of the product name on search box to search for specific item
+-Click export button to export the data to excel sheet
